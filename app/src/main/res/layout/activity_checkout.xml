@@ -29,7 +29,7 @@
             android:text="Use Current Location"
             android:textColor="#0C831F"
             android:backgroundTint="#E8F5E9"
-            app:icon="@drawable/ic_location"
+            app:icon="@android:drawable/ic_menu_mylocation"
             app:iconTint="#0C831F"
             app:cornerRadius="12dp"
             android:elevation="0dp"
@@ -49,13 +49,15 @@
             android:layout_height="wrap_content"
             android:scrollbars="none"
             android:layout_marginBottom="24dp">
-            
+
             <com.google.android.material.chip.ChipGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:singleLine="true">
-                
+
+                <!-- 🟢 FIXED: Using your newly generated custom icons 🟢 -->
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/chipHome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Home (Apt 4B, Sector 5)"
@@ -63,6 +65,7 @@
                     style="@style/Widget.MaterialComponents.Chip.Action"/>
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/chipWork"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Work (Tech Park, Block C)"
@@ -71,24 +74,97 @@
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
 
+        <!-- BLINKIT STYLE ADDRESS FORM -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter Address Details"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:layout_marginBottom="12dp"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter New Address Manually"
+            android:hint="House / Flat / Block No."
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:boxCornerRadiusTopStart="12dp"
-            app:boxCornerRadiusTopEnd="12dp"
-            app:boxCornerRadiusBottomStart="12dp"
-            app:boxCornerRadiusBottomEnd="12dp"
-            android:layout_marginBottom="32dp">
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            android:layout_marginBottom="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etAddress"
+                android:id="@+id/etHouseNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="3"
-                android:gravity="top"/>
+                android:inputType="textPostalAddress"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Apartment / Road / Area"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            android:layout_marginBottom="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPostalAddress"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- SIDE-BY-SIDE COLUMNS (Landmark & Pincode) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="32dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Landmark"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                android:layout_marginEnd="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etLandmark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Pincode"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPincode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="6"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -99,17 +175,23 @@
             android:textColor="?android:attr/textColorPrimary"
             android:layout_marginBottom="12dp"/>
 
+        <!-- 🟢 FIXED: Wrapped in a RadioGroup so they toggle correctly 🟢 -->
         <RadioGroup
+            android:id="@+id/rgPayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <RadioButton
+                android:id="@+id/rbUpi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pay via UPI / Cards"
+                android:paddingVertical="8dp"
                 android:checked="true"/>
             <RadioButton
+                android:id="@+id/rbCod"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingVertical="8dp"
                 android:text="Cash on Delivery"/>
         </RadioGroup>
 
@@ -117,7 +199,7 @@
             android:id="@+id/btnPlaceOrder"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Place Order"
+            android:text="PLACE ORDER"
             android:textSize="18sp"
             android:textStyle="bold"
             android:backgroundTint="#0C831F"
