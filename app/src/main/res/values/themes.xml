@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Force Light Theme and remove default top bar -->
+    <style name="Theme.OceanxGroceryApp" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color (Blinkit Green) -->
+        <item name="colorPrimary">#0C831F</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <!-- Make status bar white with dark icons -->
+        <item name="android:statusBarColor">#FFFFFF</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.OceanxGroceryApp"
+        tools:targetApi="31">
+
+        <!-- 1. LOGIN SCREEN (Main Entry Point) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 2. OTP VERIFICATION SCREEN -->
+        <activity
+            android:name=".OtpActivity"
+            android:exported="false" />
+
+        <!-- 3. HOME SCREEN (Product List) -->
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+
+        <!-- 4. CART SCREEN (Bill Summary) -->
+        <activity
+            android:name=".CartActivity"
+            android:exported="false" />
+
+        <!-- 5. CHECKOUT SCREEN (Address & Payment) -->
+        <activity
+            android:name=".CheckoutActivity"
+            android:exported="false" />
+
+        <!-- 6. ORDER SUCCESS SCREEN -->
+        <activity
+            android:name=".OrderSuccessActivity"
+            android:exported="false" />
+
+    </application>
+
+</manifest>
